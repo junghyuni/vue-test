@@ -117,6 +117,16 @@ export default {
       return data.slice(0, 1).toUpperCase() + data.slice(1).toLowerCase();
     },
   },
+  beforeCreate() {
+    //grab some data from database
+  },
+  created() {},
+  beforeMount() {},
+  mounted() {},
+  beforeUpdated() {},
+  updated() {},
+  beforeDestroy() {},
+  destroyed() {},
 };
 </script>
 
