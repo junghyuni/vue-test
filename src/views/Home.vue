@@ -7,36 +7,45 @@
         <comp-two />
         <comp-three />
         -->
-        <button class="mr-1" v-on:click="componentShow = 'compOne'">Component One |</button>
-        <button class="mr-1" v-on:click="componentShow = 'compTwo'">Component Two |</button>
-        <button class="mr-1" v-on:click="componentShow = 'compThree'">Component Three </button>
+        <button class="mr-1" v-on:click="componentShow = 'Main'">Main |</button>
+        <button class="mr-1" v-on:click="componentShow = 'Practice'">
+          Practice |
+        </button>
+        <button class="mr-1" v-on:click="componentShow = 'MiniGame'">
+          MiniGame |
+        </button>
+        <button class="mr-1" v-on:click="componentShow = 'AttendenceCard'">
+          Attendence Card
+        </button>
       </v-flex>
       <v-flex>
-          <component v-bind:is="componentShow"></component>
+        <component v-bind:is="componentShow"></component>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-import compOne from '@/components/compOne.vue'
-import compTwo from '@/components/compTwo.vue'
-import compThree from '@/components/compThree.vue'
+import Main from "@/components/Main.vue";
+import Practice from "@/components/Practice.vue";
+import MiniGame from "@/components/MiniGame.vue";
+import AttendenceCard from "@/components/AttendenceCard.vue";
 
 export default {
-  name: 'home',
+  name: "home",
   data() {
     return {
-        componentShow: 'compOne'
-    }
+      componentShow: "compOne",
+    };
   },
   components: {
-    compOne,
-    compTwo,
-    compThree
-  }
-}
+    Main,
+    Practice,
+    MiniGame,
+    AttendenceCard,
+  },
+};
 </script>
+
 <style lang="scss">
- 
 </style>
