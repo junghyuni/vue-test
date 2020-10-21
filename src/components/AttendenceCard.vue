@@ -45,19 +45,23 @@
           <v-flex xs12 sm10 offset-sm1>
             <v-card flat color="grey lighten-2">
               <v-card-title primary-title>
-                <p>Attending ({{ attendentName.length }} / 5)</p>
+                <p>
+                  Attending ({{ attendentName.length }} / {{ CourseCapacity }})
+                </p>
                 <v-spacer></v-spacer>
                 <v-btn color="red lighten-1">Reset</v-btn>
               </v-card-title>
               <v-card-text>
-                <progress></progress>
+                <v-progress-linear
+                  v-bind:style="{ width: CourseCapacityPercentage + '%' }"
+                ></v-progress-linear>
               </v-card-text>
               <v-card-text>
                 <v-chip
                   color="teal lighten-2"
-                  v-for="(name, index) in attendentName"
+                  v-for="(name, index) in sortNames"
                   :key="index"
-                  >{{ name }}</v-chip
+                  >{{ name.toLowerCase() + "님" }}</v-chip
                 >
                 <div v-if="attendentName.length == 0">
                   <h4>No names is added yet...</h4>
@@ -83,15 +87,31 @@ export default {
       },
       newAttendentName: "",
       attendentName: [],
+      CourseCapacity: 10,
+      CourseCapacityPercentage: 0,
     };
   },
   methods: {
     formSubmitted: function () {
-      if (this.newAttendentName.length > 0) {
+      if (
+        this.newAttendentName.length > 0 &&
+        this.CourseCapacityPercentage < 100
+      ) {
         this.attendentName.push(this.newAttendentName);
         this.newAttendentName = "";
+        this.CourseCapacityPercentage =
+          this.attendentName.length / (this.CourseCapacity / 100);
       }
     },
+    sortNames: function () {
+      return this.attendentName.sort();
+    },
+  },
+
+  // why i can't put sortNames to computed :/,
+
+  watch: {
+    attendentName: function () {},
   },
 };
 </script>
