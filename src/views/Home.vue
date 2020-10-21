@@ -35,7 +35,7 @@ export default {
   name: "home",
   data() {
     return {
-      componentShow: "compOne",
+      componentShow: "Main",
     };
   },
   components: {

@@ -66,9 +66,10 @@
 export default {
   data() {
     return {
-      showOne: true,
-      showTwo: true,
-      showThree: true,
+      Main: true,
+      Practice: true,
+      MiniGame: true,
+      AttendenceCard: true,
     };
   },
 };
