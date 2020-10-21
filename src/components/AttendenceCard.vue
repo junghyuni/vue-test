@@ -45,7 +45,7 @@
           <v-flex xs12 sm10 offset-sm1>
             <v-card flat color="grey lighten-2">
               <v-card-title primary-title>
-                <p>Attending (0 / 5)</p>
+                <p>Attending ({{ attendentName.length }} / 5)</p>
                 <v-spacer></v-spacer>
                 <v-btn color="red lighten-1">Reset</v-btn>
               </v-card-title>
@@ -53,13 +53,15 @@
                 <progress></progress>
               </v-card-text>
               <v-card-text>
-                <h4>Attending / not attending</h4>
                 <v-chip
                   color="teal lighten-2"
                   v-for="(name, index) in attendentName"
                   :key="index"
                   >{{ name }}</v-chip
                 >
+                <div v-if="attendentName.length == 0">
+                  <h4>No names is added yet...</h4>
+                </div>
               </v-card-text>
             </v-card>
           </v-flex>
@@ -85,8 +87,10 @@ export default {
   },
   methods: {
     formSubmitted: function () {
-      this.attendentName.push(this.newAttendentName);
-      this.newAttendentName = "";
+      if (this.newAttendentName.length > 0) {
+        this.attendentName.push(this.newAttendentName);
+        this.newAttendentName = "";
+      }
     },
   },
 };
