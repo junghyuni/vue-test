@@ -59,10 +59,12 @@
               <v-card-text>
                 <v-chip
                   color="teal lighten-2"
-                  v-for="(name, index) in sortNames"
+                  v-for="(name, index) in attendentName"
                   :key="index"
-                  >{{ name.toLowerCase() + "님" }}</v-chip
                 >
+                  <!-- {{ name | capitalize }} {{ index }} -->
+                  {{ name.toLowerCase() + "님" }}
+                </v-chip>
                 <div v-if="attendentName.length == 0">
                   <h4>No names is added yet...</h4>
                 </div>
@@ -110,8 +112,10 @@ export default {
 
   // why i can't put sortNames to computed :/,
 
-  watch: {
-    attendentName: function () {},
+  filters: {
+    capitalize: function (data) {
+      return data.slice(0, 1).toUpperCase() + data.slice(1).toLowerCase();
+    },
   },
 };
 </script>
