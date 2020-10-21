@@ -1,38 +1,99 @@
 <template>
-  <v-container>
-    <v-layout>
-      <v-flex xs12 sm6 offset-sm3>
-        <v-card class="mx-auto" max-width="400">
-          <v-img
-            class="white--text align-end"
-            height="200px"
-            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-          >
-            <v-card-title>Top 10 Australian beaches</v-card-title>
-          </v-img>
+  <v-app>
+    <v-content>
+      <v-container>
+        <v-layout>
+          <v-flex xs12 sm10 offset-sm1>
+            <v-card dark flat>
+              <v-card-title class="py-2" primary-title>
+                <v-flex>
+                  <span class="teal--text text--lighten-2">{{
+                    attendence.attendenceDate
+                  }}</span>
+                  <span id="currentdate">- the current date</span>
+                  <v-divider class="mt-1"></v-divider>
+                </v-flex>
+              </v-card-title>
+              <v-flex class="px-3">
+                <h4 class="mb-3">{{ attendence.attendenceTitle }}</h4>
+                <p class="mb-1">{{ attendence.attendenceSignUpText }}</p>
+                <p class="mb-1">{{ attendence.attendenceDescription }}</p>
+                <v-flex>
+                  <v-form v-on:submit.prevent="formSubmitted">
+                    <v-layout>
+                      <v-flex>
+                        <v-text-field
+                          id="nameInput"
+                          label="Enter your name"
+                          v-model="newAttendentName"
+                        ></v-text-field>
+                      </v-flex>
+                      <v-flex class="mt-2">
+                        <v-btn type="submit" color="teal lighten-2"
+                          >Submit</v-btn
+                        >
+                      </v-flex>
+                    </v-layout>
+                  </v-form>
+                </v-flex>
+              </v-flex>
+            </v-card>
+          </v-flex>
+        </v-layout>
 
-          <v-card-subtitle class="pb-0"> Number 10 </v-card-subtitle>
-
-          <v-card-text class="text--primary">
-            <div>Whitehaven Beach</div>
-
-            <div>Whitsunday Island, Whitsunday Islands</div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-btn color="orange" text> Share </v-btn>
-
-            <v-btn color="orange" text> Explore </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-container>
+        <v-layout>
+          <v-flex xs12 sm10 offset-sm1>
+            <v-card flat color="grey lighten-2">
+              <v-card-title primary-title>
+                <p>Attending (0 / 5)</p>
+                <v-spacer></v-spacer>
+                <v-btn color="red lighten-1">Reset</v-btn>
+              </v-card-title>
+              <v-card-text>
+                <progress></progress>
+              </v-card-text>
+              <v-card-text>
+                <h4>Attending / not attending</h4>
+                <v-chip
+                  color="teal lighten-2"
+                  v-for="(name, index) in attendentName"
+                  :key="index"
+                  >{{ name }}</v-chip
+                >
+              </v-card-text>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      attendence: {
+        attendenceDate: "20 December",
+        attendenceTitle: "Attendence",
+        attendenceSignUpText: "Add thou name to'eth the attendence list: ",
+        attendenceDescription: "Thou shalt not show'eth up",
+      },
+      newAttendentName: "",
+      attendentName: [],
+    };
+  },
+  methods: {
+    formSubmitted: function () {
+      this.attendentName.push(this.newAttendentName);
+      this.newAttendentName = "";
+    },
+  },
+};
 </script>
 
 <style scoped>
+* {
+  text-align: left;
+}
 </style>

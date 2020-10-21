@@ -74,7 +74,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #blocker {
   height: 1000px;
   border: 2px solid lightblue;
