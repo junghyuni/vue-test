@@ -117,6 +117,8 @@ export default {
       return data.slice(0, 1).toUpperCase() + data.slice(1).toLowerCase();
     },
   },
+
+  //vue lifecycle hooks
   beforeCreate() {
     //grab some data from database
   },
